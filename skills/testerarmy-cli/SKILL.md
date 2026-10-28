@@ -327,8 +327,9 @@ ta batches junit <batchId> --output report.xml
 
 `ta discover` queues a free-roam run: the agent explores toward a goal with no
 saved test and reports bugs. A FAILED verdict means bugs were found. With
-`--wait`, the command exits 1 unless the run passed (bugs found, blocked, or
-cancelled).
+`--wait`, the command exits 1 for every outcome except a pass: bugs found
+(FAILED), blocked, or cancelled. Read the run verdict in the `--json` output to
+tell them apart.
 
 ```bash
 ta discover --project <projectId> --goal "Explore checkout and find bugs" --wait --json
