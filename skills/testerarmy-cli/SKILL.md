@@ -326,8 +326,9 @@ ta batches junit <batchId> --output report.xml
 ## Discovery and Issues
 
 `ta discover` queues a free-roam run: the agent explores toward a goal with no
-saved test and reports bugs. With `--wait`, a FAILED verdict means bugs were
-found and the command exits 1.
+saved test and reports bugs. A FAILED verdict means bugs were found. With
+`--wait`, the command exits 1 unless the run passed (bugs found, blocked, or
+cancelled).
 
 ```bash
 ta discover --project <projectId> --goal "Explore checkout and find bugs" --wait --json
@@ -335,8 +336,9 @@ ta discover --project <projectId> --goal "Explore settings" --target-url https:/
 ta discover --project <projectId> --goal "Explore onboarding" --platform android --wait --json
 ```
 
-`--target-url` is web only. Mobile platforms explore the latest uploaded app
-unless `--app-id` is set; `--device-model` picks the device.
+`--target-url` is web only. Mobile projects default to iOS and explore the
+latest uploaded app; `--app-id` picks another build and needs
+`--platform ios|android`. `--device-model` picks the device.
 
 Found bugs land in issues, deduplicated across runs and tracked per
 environment:
